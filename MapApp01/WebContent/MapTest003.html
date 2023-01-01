@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MapTest003</title>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5f4f589ce2158bf8baa674fc17beb39e"></script>
+
+
+<script type="text/javascript">
+	function initialize()
+	{
+		//alert("함수 호출 확인~!!!");
+		
+		container = document.getElementById("map");
+
+		options = {
+			/* center: new daum.maps.LatLng(37.556556, 126.919550), */		// 구버전				
+			center: new kakao.maps.LatLng(37.556556, 126.919550),	// Lat 위도 Lng 경도		
+			level: 3,
+		};
+		
+		/* map = new daum.maps.Map(container, options); */					// 구버전
+		map = new kakao.maps.Map(container, options);
+	}
+</script>
+</head>
+
+<body onload="initialize()">
+
+<!-- ○ 발급받은 App Key -->
+<!-- appkey = 5f4f589ce2158bf8baa674fc17beb39e -->
+
+<!-- ○ 지도의 중심 좌표 -->
+<!-- 37.556556, 126.919550 -->
+
+<div>
+	<h1>Kakao Map 생성 기본 관찰</h1>
+	<p>지도 생성 기본 내용 관찰3</p>
+	<hr>
+</div>
+
+
+<!-- 지도를 랜더링할 div 공간 확보(지정) -->
+<div id="map" style="width: 100%; height: 350px;"></div>
+
+
+
+
+
+</body>
+</html>
