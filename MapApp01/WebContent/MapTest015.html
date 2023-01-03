@@ -2,53 +2,45 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MapTest013.html</title>
+<title>MapTest015.html</title>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5f4f589ce2158bf8baa674fc17beb39e"></script>
 
 <script type="text/javascript">
 	function initialize() {
 		container = document.getElementById("map");
+		mapCenter = new kakao.maps.LatLng(37.556556, 126.919550);
 		options = {
-			center: new kakao.maps.LatLng(37.556556, 126.919550),	
+			center: mapCenter,	
 			level: 3,
 		};
 		map = new kakao.maps.Map(container, options);
 		
-		// 마커가 표시될 위치 (교육원 길 건너 스타벅스 → 37.556843007030444, 126.91998494969798)
-		markerPosition = new kakao.maps.LatLng(37.556843007030444, 126.91998494969798);
+		//imageSrc = "images/markerImg.png";	//마커 이미지 경로(또는 웹 상의 주소)
+		imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png";
 		
-		// 마커 생성
-		marker = new kakao.maps.Marker(
-		{
-			position: markerPosition,
-		});
 		
-		// 마커가 지도 위에 표시될 수 있도록 설정
-		marker.setMap(map);
-		//-- 위에서 우리가 생성한 map(→ line 20)에다가 마커를 세팅
 		
-	
-	};
-	
-	// 마커 제거 함수
-	function removeMarker() {
-		marker.setMap(null);
-	}
-	
-	// 
-	function createMarker() {
+		imageSize = new kakao.maps.Size(54, 59);	// 마커 이미지 크기
 		
-		// 마커가 표시될 위치 다시 구성
-		markerPosition = new kakao.maps.LatLng(37.556719, 126.924138);
+		imageOption = {offset: new kakao.maps.Point(27, 69)};
+		//-- 마커 이미지에 대한 옵션
+		//   마커 좌표와 일치시킬 이미지 안에서의 좌표 설정
+		
+		// 구성한 마커의 속성을 활용하여 마커 이미지 생성
+		markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+		
 		// 마커 생성
 		marker = new kakao.maps.Marker({
-			position: markerPosition,
+			position: mapCenter,
+			image: markerImage,					//-- 추가 옵션 : 마커 이미지 설정
 		});
 		
-		// 마커가 지도 위에 표시될 수 있도록 설정
+		
 		marker.setMap(map);
-	}
-	
+		
+		
+	};
+
 </script>
 
 </head>
@@ -61,7 +53,7 @@
 	<!-- 37.556556, 126.919550 -->
 
 	<div>
-		<h1>Kakao Map 고정 마커 생성</h1>
+		<h1>Kakao Map 마커 이미지 변경</h1>
 		<hr>
 	</div>
 	
