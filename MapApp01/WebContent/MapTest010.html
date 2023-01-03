@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MapTest010.html</title>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5f4f589ce2158bf8baa674fc17beb39e"></script>
+
+<script type="text/javascript">
+	function initialize() {
+		container = document.getElementById("map");
+		options = {
+			center: new kakao.maps.LatLng(37.556556, 126.919550),	
+			level: 3,
+			//zoomable: false,
+		};
+		map = new kakao.maps.Map(container, options);
+	}
+	
+	function zoomable(type) {
+		map.setZoomable(type);
+	}
+	
+</script>
+
+
+</head>
+<body onload="initialize()">
+	
+	<!-- ○ 발급받은 App Key -->
+	<!-- appkey = 5f4f589ce2158bf8baa674fc17beb39e -->
+	
+	<!-- ○ 지도의 중심 좌표 -->
+	<!-- 37.556556, 126.919550 -->
+
+	<div>
+		<h1>Kakao Map 확대/축소 제한 / 허용</h1>
+		<hr>
+	</div>
+	
+	<!-- 지도를 그릴 div 공간 확보(지정) -->
+	<div id="map" style="width: 100%; height: 400px;"></div>
+	
+	<div>
+		<p>
+			<button type="button" onclick="zoomable(false)">확대/축소 제한(불가)</button>	
+			<button type="button" onclick="zoomable(true)">확대/축소 허용(가능)</button>	
+		</p>
+	</div>
+	
+</body>
+</html>

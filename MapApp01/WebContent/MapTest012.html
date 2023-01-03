@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MapTest012.html</title>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5f4f589ce2158bf8baa674fc17beb39e"></script>
+
+<script type="text/javascript">
+	function initialize() {
+		container = document.getElementById("map");
+		options = {
+			center: new kakao.maps.LatLng(37.556556, 126.919550),	
+			level: 3,
+		};
+		map = new kakao.maps.Map(container, options);
+		
+		// 지도 내부에 표시할 마커 구성(생성)
+		marker = new kakao.maps.Marker(
+		{
+			// 지도 중심 좌표에 마커가 생성될 수 있도록 구성(position)
+			position: map.getCenter(),
+		});
+
+		// 지도에 마커를 표시
+		marker.setMap(map);		
+		
+		clickAction();
+	};
+	
+	function clickAction() {
+		
+		kakao.maps.event.addListener(map, "click", function(mouseEvent) {
+			var latlng = mouseEvent.latLng;
+			
+			marker.setPosition(latlng);
+			
+			var message = "클릭한 지점의 위도는 " + latlng.getLat();
+			message += " 이고, 경도는 " + latlng.getLng() + " 입니다.";
+			
+			var resultDiv = document.getElementById("result");
+			resultDiv.innerHTML = message;
+			
+		});
+	}
+	
+</script>
+
+
+</head>
+<body onload="initialize()">
+	
+	<!-- ○ 발급받은 App Key -->
+	<!-- appkey = 5f4f589ce2158bf8baa674fc17beb39e -->
+	
+	<!-- ○ 지도의 중심 좌표 -->
+	<!-- 37.556556, 126.919550 -->
+
+	<div>
+		<h1>Kakao Map 마우스 클릭 이벤트 등록</h1>
+		<hr>
+	</div>
+	
+	<!-- 지도를 그릴 div 공간 확보(지정) -->
+	<div id="map" style="width: 100%; height: 400px;"></div>
+	
+	<p>
+		지도 클릭으로 좌표 확인 및 해당 지점 마커 표시
+	</p>
+	<div id="result"></div>
+	
+</body>
+</html>
